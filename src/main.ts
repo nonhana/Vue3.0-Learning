@@ -3,9 +3,23 @@ import App from "./App.vue";
 import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
 import "./tailwind.css";
+import { createPinia } from "pinia"; // 引入pinia
+import piniaPlugin from "./store/localStoragePlugin"; // 引入自定义的pinia插件
 
 export const app = createApp(App);
 app.use(ElementPlus);
+
+// 用store接收createPinia()返回的对象
+const store = createPinia();
+// 将piniaPlugin注册到store上
+store.use(
+  piniaPlugin({
+    key: "pinia",
+  })
+);
+
+// 将store挂载到app上，相当于一个插件
+app.use(store);
 /* 
   通过createApp返回一个app对象，
   并在其config.globalProperties属性上挂载全局函数与全局变量，

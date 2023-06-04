@@ -9,10 +9,6 @@
       "DOM.Iterable"
     ],
     "skipLibCheck": true,
-    // 将element-plus/global注册到types，实现全局引入，在书写的时候有代码提示
-    "types": [
-      "element-plus/global"
-    ],
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
