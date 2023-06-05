@@ -5,6 +5,7 @@ import "element-plus/dist/index.css";
 import "./tailwind.css";
 import { createPinia } from "pinia"; // 引入pinia
 import piniaPlugin from "./store/localStoragePlugin"; // 引入自定义的pinia插件
+import Loading from "./components/自定义Vue插件使用"; // 引入自定义Vue插件使用
 
 export const app = createApp(App);
 app.use(ElementPlus);
@@ -58,7 +59,6 @@ declare module "vue" {
   app.use内部注册插件，调用该插件内部的install函数并传入app作为参数，
   之后在插件代码内部接收到这个app，然后对这个app做各种挂载的操作就可以了。
  */
-import Loading from "./components/自定义Vue插件使用";
 app.use(Loading);
 
 app.mount("#app");

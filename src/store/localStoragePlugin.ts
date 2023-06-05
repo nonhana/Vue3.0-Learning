@@ -23,6 +23,7 @@ const getStorage = (key: string) => {
 const piniaPlugin = (options: Options) => {
   // 此处return是函数科里化的写法，经常用于解构函数参数，也就是参数降维
   // 当store.use(piniaPlugin())时，会自动传入context，而我们此处需要自定义传入的options，所以需要返回一个函数来接收这个自动传入的context
+  // ps：写插件的时候很常用！因为写插件的时候都是通过XXX.use这样的形式来引入插件，这样子通常会自动传入一些参数，我们需要自定义传入的参数，就需要用到科里化的写法
   return (context: PiniaPluginContext) => {
     const { store } = context; // 将context解构出来
     // 调用getStorage读取存在本地的已有数据
@@ -34,7 +35,6 @@ const piniaPlugin = (options: Options) => {
         toRaw(store.$state)
       );
     });
-    console.log(store, "store");
     // 返回值覆盖pinia state里面的原始值
     return {
       ...data,
